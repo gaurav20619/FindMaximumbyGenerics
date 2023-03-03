@@ -1,20 +1,29 @@
-public class FindMaximum {
-// generic method
-	public static <T extends Comparable<T>> T maximum(T x, T y, T z) {
-        T max = x; //assume x initially largest
-        if (y.compareTo(max) > 0) {
-            max = y; //y is the largest
-        }
-        if (z.compareTo(max) > 0) {
-            max = z; //z is the largest
-        } else {
-            max =x;
-        }
-        return max;
+public class FindMaximum <T extends Comparable<T>>{ //generic class 
+    T x;
+    T y;
+    T z;
+
+    FindMaximum(T x, T y, T z) {//parameterized constructor
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
-	public static void main(String[] args) {
-		System.out.println("Maximum number out of three integers is: " + maximum(15, 32, 45));
-        System.out.println("Maximum number out of three float is: " + maximum(5.1F, 32.2F, 45.3F));
-        System.out.println("Maximum among three string is: " + maximum("Apple", "Banana", "Peach"));
-	}
+    public T testMaximum () {// testMaximum method 
+
+        if (x.compareTo(y) > 0) {
+            return x;
+        } else if (y.compareTo(z) > 0) {
+            return y;
+        } else {
+            return z;
+        }
+    }
+public static void main(String[] args) {
+    FindMaximum<Integer> compareInteger = new FindMaximum<Integer>(15, 32, 45);
+        System.out.println("Maximum number out of three integers is: " + compareInteger.testMaximum());
+        FindMaximum<Float> comapareFloat = new FindMaximum<Float>(15.1F, 32.2F, 45.3F);
+        System.out.println("Maximum number out of three float is: " + comapareFloat.testMaximum());
+        FindMaximum<String> compareString = new FindMaximum<String>("Apple", "Banana", "Peach");
+        System.out.println("Maximum among three string is: " + compareString.testMaximum());
+    }
 }
