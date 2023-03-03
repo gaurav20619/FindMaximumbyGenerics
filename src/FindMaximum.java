@@ -1,29 +1,47 @@
-import java.util.Scanner;
 
-public class FindMaximum {
-    public static <T> void Maximum(T str1, T str2, T str3) {
-		T max = str1;
-		if(((String)str2).compareTo((String)max)>0 && ((String)str2).compareTo((String)str3)>0)
-			System.out.println(str2+" is Maximum");
-		else if(((String)str3).compareTo((String)max)>0)
-			System.out.println(str3+" is Maximum");
-		else
-			System.out.println(str1+" is Maximum");
+public class FindMaximum<T extends Comparable<T>> {
+	
+	T [] inputArray;
+	
+	public FindMaximum(T[] inputArray){
+		
+		this.inputArray = inputArray;
+	}
+
+	public void Maximum() {
+		for(int i=0; i<inputArray.length-1; i++) {
+			if(inputArray[i].compareTo(inputArray[i+1])>0) {
+				inputArray[i+1] = inputArray[i];
+			}
+		}
+		System.out.println(inputArray[inputArray.length-1]);
+	}
+	
+	public void display() {
+		
+		for(int i=0; i<inputArray.length; i++) {
+			System.out.print(inputArray[i]+" ");
+		}
 	}
 	
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
+		Integer [] integers = {26,21,25,65,48,98,75};
+		Float [] floats = {2.5f,3.6f,6.5f,25.6f};
+		String [] strings = {"Apple","Orange","Peach","Banana","Mango"};
 		
-		System.out.print("Enter the First Number : ");
-		String str1 = scan.next();
-		
-		System.out.print("Enter the Second Number : ");
-		String str2 = scan.next();
-		
-		System.out.print("Enter the Third Number : ");
-		String str3 = scan.next();scan.close();
-		
-		Maximum(str1, str2, str3);
+		System.out.print("Integer : ");
+		new FindMaximum(integers).display();
+		System.out.println();
+		System.out.print("Floats : ");
+		new FindMaximum(floats).display();
+		System.out.println();
+		System.out.print("Strings : ");
+		new FindMaximum(strings).display();
+		System.out.println();
+		System.out.println("Maximum Values are : ");
+		new FindMaximum(integers).Maximum();
+		new FindMaximum(floats).Maximum();
+		new FindMaximum(strings).Maximum();
 	}
 }
