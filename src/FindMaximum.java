@@ -1,37 +1,20 @@
-
-public class FindMaximum<T extends Comparable<T>> {
-	
-	T [] inputArray;
-	
-	public FindMaximum(T[] inputArray){
-		
-		this.inputArray = inputArray;
-	}
-
-	public void Maximum() {
-		for(int i=0; i<inputArray.length-1; i++) {
-			if(inputArray[i].compareTo(inputArray[i+1])>0) {
-				inputArray[i+1] = inputArray[i];
-			}
-		}
-	}
-	
-	public void PrintMax() {
-		
-			System.out.println("Maximum Values : "+inputArray[inputArray.length -1]);
-	}
-	
+public class FindMaximum {
+// generic method
+	public static <T extends Comparable<T>> T maximum(T x, T y, T z) {
+        T max = x; //assume x initially largest
+        if (y.compareTo(max) > 0) {
+            max = y; //y is the largest
+        }
+        if (z.compareTo(max) > 0) {
+            max = z; //z is the largest
+        } else {
+            max =x;
+        }
+        return max;
+    }
 	public static void main(String[] args) {
-		
-        Float [] floats = {2.5f,3.6f,6.5f,25.6f};
-		Integer [] integers = {26,21,25,65,48,98,75};
-		String [] strings = {"Apple","Orange","Peach","Banana","Mango"};
-		
-		new FindMaximum(integers).Maximum();
-		new FindMaximum(floats).Maximum();
-		new FindMaximum(strings).Maximum();
-		new FindMaximum(integers).PrintMax();
-		new FindMaximum(floats).PrintMax();
-		new FindMaximum(strings).PrintMax();
+		System.out.println("Maximum number out of three integers is: " + maximum(15, 32, 45));
+        System.out.println("Maximum number out of three float is: " + maximum(5.1F, 32.2F, 45.3F));
+        System.out.println("Maximum among three string is: " + maximum("Apple", "Banana", "Peach"));
 	}
 }
